@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card wide-card">
+    <h2>Final Results (Admin View)</h2>
+    {% if not branch_results %}
+        <p class="info-text">No results to display yet.</p>
+    {% else %}
+        {% for branch, records in branch_results.items() %}
+            <div class="branch-block">
+                <h3>{{ branch }} Branch</h3>
+                {% if not records %}
+                    <p class="info-text">No candidates for this branch.</p>
+                {% else %}
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Candidate Name</th>
+                            <th>Party</th>
+                            <th>Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in records %}
+                        <tr>
+                            <td>{{ row['name'] }}</td>
+                            <td>{{ row['party'] }}</td>
+                            <td>{{ row['votes'] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="bottom-links">
+        <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

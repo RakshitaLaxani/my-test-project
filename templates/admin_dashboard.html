@@ -1,0 +1,15 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>Admin Dashboard</h2>
+    <div class="admin-actions">
+        <a class="btn secondary-btn" href="{{ url_for('add_candidate') }}">Add Candidates</a>
+        <a class="btn secondary-btn" href="{{ url_for('manage_candidates') }}">Manage Candidates</a>
+        <a class="btn secondary-btn" href="{{ url_for('admin_final_results') }}">Final Results</a>
+    </div>
+    <div class="bottom-links">
+        <a href="{{ url_for('admin_logout') }}">Logout</a>
+    </div>
+</div>
+{% endblock %}

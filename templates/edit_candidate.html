@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>Edit Candidate</h2>
+    <form method="POST" class="form">
+        <div class="form-group">
+            <label for="name">Candidate Name</label>
+            <input type="text" id="name" name="name" value="{{ candidate['name'] }}" required>
+        </div>
+        <div class="form-group">
+            <label for="branch">Branch</label>
+            <select id="branch" name="branch" required>
+                <option value="CSE" {% if candidate['branch'] == 'CSE' %}selected{% endif %}>CSE</option>
+                <option value="ISE" {% if candidate['branch'] == 'ISE' %}selected{% endif %}>ISE</option>
+                <option value="ECE" {% if candidate['branch'] == 'ECE' %}selected{% endif %}>ECE</option>
+                <option value="EEE" {% if candidate['branch'] == 'EEE' %}selected{% endif %}>EEE</option>
+                <option value="MECH" {% if candidate['branch'] == 'MECH' %}selected{% endif %}>MECH</option>
+                <option value="CIVIL" {% if candidate['branch'] == 'CIVIL' %}selected{% endif %}>CIVIL</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="party">Party Name</label>
+            <input type="text" id="party" name="party" value="{{ candidate['party'] }}" required>
+        </div>
+        <button type="submit" class="btn primary-btn">Update Candidate</button>
+    </form>
+    <div class="bottom-links">
+        <a href="{{ url_for('manage_candidates') }}">Back to Manage Candidates</a>
+    </div>
+</div>
+{% endblock %}

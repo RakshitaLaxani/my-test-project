@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>Student Login</h2>
+    <form method="POST" class="form">
+        <div class="form-group">
+            <label for="usn">USN</label>
+            <input type="text" id="usn" name="usn" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn primary-btn">Login</button>
+    </form>
+    <p class="helper-text">
+        New user?
+        <a href="{{ url_for('register') }}">Register here</a>
+    </p>
+</div>
+{% endblock %}

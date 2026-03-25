@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h2>Vote - {{ branch }} Branch</h2>
+
+    {% if not candidates %}
+        <p class="info-text">No candidates are available for your branch yet. Please check later.</p>
+    {% else %}
+        {% if has_voted %}
+            <p class="info-text success-text">You have already voted. Thank you for participating!</p>
+        {% else %}
+            <p class="info-text">Select one candidate and submit your vote. You can vote only once.</p>
+            <form method="POST" class="form">
+                <div class="candidate-list">
+                    {% for candidate in candidates %}
+                    <label class="candidate-item">
+                        <input type="radio" name="candidate" value="{{ candidate['id'] }}">
+                        <div class="candidate-details">
+                            <span class="candidate-name">{{ candidate['name'] }}</span>
+                            <span class="candidate-party">{{ candidate['party'] }}</span>
+                        </div>
+                    </label>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn primary-btn">Submit Vote</button>
+            </form>
+        {% endif %}
+    {% endif %}
+
+    <div class="bottom-links">
+        <a href="{{ url_for('results') }}">View Results</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</div>
+{% endblock %}

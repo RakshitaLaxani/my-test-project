@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Decentralised Voting System for College Elections</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-wrapper">
+        <header class="main-header">
+            <h1 class="app-title">Decentralised Voting System for College Elections</h1>
+            <nav class="top-nav">
+                <a href="{{ url_for('student_login') }}">Student Login</a>
+                <a href="{{ url_for('results') if session.get('student_id') else url_for('student_login') }}">Results</a>
+                <a href="{{ url_for('vote') if session.get('student_id') else url_for('student_login') }}">Vote</a>
+                <a href="{{ url_for('admin_login') }}">Admin Login</a>
+            </nav>
+        </header>
+
+        <main class="main-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <section class="content">
+                {% block content %}{% endblock %}
+            </section>
+        </main>
+    </div>
+</body>
+</html>
